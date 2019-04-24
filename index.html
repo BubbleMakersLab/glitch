@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <link rel="shortcut icon" href="/icon.png">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="/css/github.min.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,900" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.min.css">
+    <style>
+        .header::before {
+            background-image: url("https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3a85730273c80cb666b28cf340b5a898&auto=format&fit=crop&w=1920&q=50");
+        }
+
+        h6 {
+            font-weight: bold;
+            font-size: 1em;
+            color: red;
+        }
+    </style>
+
+    <script src="/js/jquery.iframetracker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@10.19.0/dist/lazyload.min.js"></script>
+    <script src="/js/main.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="info">
+            <h1>Designing With Web</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="intro">
+            <div class="row">
+                <div class="col m6">
+                    <p>
+                        Communications, social networks, games, shops, Internet of Things… Web is (nearly) everywhere in our lives and most of us are only using the Web passively (i.e. just looking at it, consuming the content) without understanding how it works and how we could use it for our needs.
+                    </p>
+
+                    <p>
+                        This course will guide you to dive into web technologies through different projects, providing you with professional resources and tools.
+                    </p>
+                </div>
+
+                <div class="col m6">
+                    <div class="img-container"><img src="https://media.giphy.com/media/eCwAEs05phtK/giphy.gif" alt="Surfer in swimsuit going through old computers and webpages"></div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h6>Why this course?</h6>
+
+        <div id="why">
+            <p>
+                <strong>This course does not intend to make you web developers</strong> (this is not a Computer Science course), but instead to let you <strong>understand these technologies</strong>, what they imply, their languages, how they work and <strong>how you can take advantage of those</strong>.
+            </p>
+
+            <p>
+                We are well aware that most of you won't be coders, but on the other hand, all of you will be managers working in a robotized economy where business models will be in a state of flux. The AI, the blockchain will also be the consequence of a future revolution after that of the platformization of society.
+            </p>
+
+            <p>
+                From then on, <strong>understanding the technological approach, discovering "behind the scenes" is part of a future manager's general culture</strong>. From now on, the companies that recruit you are more attentive to this and to softskills than to more traditional management courses.
+            </p>
+        </div>
+
+        <hr>
+
+        <h6>Learning skills not professions</h6>
+
+        <div id="skills">
+            <p>
+                Many jobs are disappearing or are currently being reinvented. In 1984, a competency was valid for approximately 38 years. Today we are approaching 5 years. It is now essential to learn how to learn to become agile. We trust that the best way to do this is to <strong>make, unmake, remake</strong>. That's why we give you the opportunity to discover how to prototype, test, design and share a product quickly, by making.
+            </p>
+        </div>
+
+        <hr>
+
+        <h6>Your learning environment</h6>
+
+        <div id="env">
+            <p>
+                Throughout the course (as during the rest of the year), you can come to the makers' labs to work individually or in groups and access the computers and softwares. Please find opening time and more on <a target="_blank" href="http://makerslab.em-lyon.com/">the makers' lab website</a>. But most of this course will take place online, therefore you'll get access to the following tools for this course:
+            </p>
+
+            <div class="row">
+                <div class="col m6">
+                    <div style="text-align:center;">
+                        <img style="box-shadow:none;width:50%;" src="https://emlyon.github.io/prototyping-with-fab/imgs/BS.png" alt="Brightspace logo">
+                    </div>
+
+                    <p>
+                        <a style="font-weight:bold;" target="_blank" href="https://emlyon.brightspace.com">Brightspace</a><br>
+                        This is where you will find all the course content. This is also where you will have to post all your deliverables!
+                    </p>
+                </div>
+
+                <div class="col m6">
+                    <div style="text-align:center;">
+                        <img style="box-shadow:none;width:50%;" src="https://emlyon.github.io/prototyping-with-fab/imgs/zoom.png" alt="Zoom logo">
+                    </div>
+
+                    <p>
+                        <a style="font-weight:bold;" target="_blank" href="https://em-lyon.zoom.us">Zoom</a><br>
+                        This videoconferencing tool allow you to meet your tutor at each step of your project during Part 3.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h6>Our program</h6>
+
+        <p><strong>Part 1: Basics</strong> <span class="bs-only">(4 weeks)</span></p>
+
+        <div>
+            <p>
+                During the first part, you'll set up the tools for this whole course, learn the basics of languages used for Web, discover a few tools (frameworks, libraries…) to help you make your firsts projects.
+            </p>
+
+            <ul class="not-on-bs" style="margin-left:50px;">
+                <li><a href="part1/basic-setup.html">0. Basic Setup</a></li>
+                <li><a href="part1/starting-with-glitch.html">1. Starting with Glitch</a></li>
+                <li><a href="part1/structuring-data.html">2. Structuring Data</a></li>
+                <li><a href="part1/structuring-web.html">3. HTML - Structuring the Web</a></li>
+                <li><a href="part1/styling-web.html">4. CSS - Styling the Web</a></li>
+                <li><a href="part1/styling-resources.html">5. Design Resources</a></li>
+                <li><a href="part1/programming-web.html">6. JS - Programming the Web</a>
+                    <ul style="padding-left:40px">
+                        <li><a href="part1/js-variables.html">i. JS - Variables</a></li>
+                        <li><a href="part1/js-conditions.html">ii. JS - Conditions</a></li>
+                        <li><a href="part1/js-loops.html">iii. JS - Loops</a></li>
+                        <li><a href="part1/js-functions.html">iv. JS - Functions</a></li>
+                        <li><a href="part1/js-arrays.html">v. JS - Arrays</a></li>
+                        <li><a href="part1/js-objects.html">vi. JS - Objects</a></li>
+                    </ul>
+                </li>
+                <li><a href="part1/js-libraries.html">7. JS - Libraries</a></li>
+            </ul>
+        </div>
+
+        <p><strong>Part 2: Explorations</strong> <span class="bs-only">(2 weeks)</span></p>
+
+        <div>
+            <p>
+                In this part, you'll learn about Web Architecture. (What is the Internet? The Web? What are clients and servers?) Then you'll have access to different modules to explore following your interests, like AI, databases, APIs…
+            </p>
+
+            <ul class="not-on-bs" style="margin-left:50px;">
+                <li><a href="part2/intro.html">Intro to part 2 - Web Architecture</a></li>
+                <li>Modules:
+                    <ul style="padding-left:40px">
+                        <li><a href="part2/apis.html">APIs</a></li>
+                        <li><a href="part2/ai.html">Artificial Intelligence</a></li>
+                        <li><a href="part2/databases.html">Databases</a></li>
+                        <!-- <li><a href="part2/ui-ux.html">UI/UX</a></li> -->
+                        <!-- <li><a href="#">Mobile Design</a></li> -->
+                        <!-- <li><a href="#">IOT</a></li> -->
+                    </ul>
+                </li>
+                <li><a href="part2/exploration.html">Exploration on mobility</a></li>
+            </ul>
+        </div>
+
+        <p><strong>Part 3: Project</strong> <span class="bs-only">(4 weeks)</span></p>
+
+        <div>
+            <p>
+                For the third and last part, you're going to work in little groups with other students tutored by a professional, on a project of your own during 4 weeks.
+            </p>
+            
+            <object style="margin:10px 0;width:100%;" data="sequence.svg" type="image/svg+xml"></object>
+            
+            <ul class="not-on-bs" style="margin-left:50px;">
+                <li><a href="part3/intro.html">Intro</a></li>
+                <li><a href="part3/room.html">Room Zoom</a></li>
+                <li><a href="part3/week1.html">Week 1. Prototype</a></li>
+                <li><a href="part3/week2.html">Week 2. Test & Iterate</a></li>
+                <li><a href="part3/week3.html">Week 3. Design & Share</a></li>
+                <li><a href="part3/week4.html">Week 4. Publication</a></li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <div class="img-container"><img src="https://media.giphy.com/media/Rb6unv0ddpPCo/giphy.gif" alt="Cat, dog and squirrel running towards the Internet"></div>
+
+        <hr>
+    </div>
+</body>
+
+</html>
