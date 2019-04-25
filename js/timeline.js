@@ -146,7 +146,7 @@ groups.each(function(d, i) {
         .attr('transform', `translate(${('' + d.nb).length === 1 ? -1 : ('' + d.nb).length === 2 ? 1 : 5}, 9)`);
 
     g.append('text')
-        .text(d => d.nb)
+        .text(d => i === currentModuleIndex ? d.nb + 1 : d.nb)
         .attr('font-size', 12)
         .attr('text-anchor', 'end')
         .attr('x', -2)
