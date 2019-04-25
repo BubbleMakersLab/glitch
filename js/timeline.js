@@ -59,7 +59,7 @@ document.querySelector('h1').innerText = modules[currentModuleIndex].name
 
 const timeline = document.createElement('div')
 timeline.id = 'timeline'
-timeline.style.marginBottom = '20px'
+timeline.style.marginBottom = '60px'
 
 const parentEl = d3.select('.container').node()
 parentEl.insertBefore(timeline, parentEl.childNodes[0])
@@ -120,6 +120,12 @@ teacher.append('rect')
     .attr('width', 10)
     .attr('height', 5)
     .attr('fill', 'white')
+
+teacher.append('text')
+    .text(() => currentModuleIndex < mean ? "you seem overdue" : "")
+    .attr('font-size', 10)
+    .attr('x', 18)
+    .attr('y', 3)
 
 console.log({mean, currentModuleIndex})
 teacher.transition()
