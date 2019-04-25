@@ -44,27 +44,29 @@ const modules = [
     {name: '6vi. JS - Objects', nb: 0},
     {name: '7. JS - Libraries', nb: 0},
 ]
-// const standard = gaussian(Math.random() * modules.length | 0, 4)
-const standard = gaussian(14 | 0, 4)
+const mean = Math.random() * modules.length | 0
+const sd = 4
+const standard = gaussian(mean, sd)
 for(let i = 0; i<330; i++){
     modules[Math.min(standard()|0, modules.length - 1)].nb ++
 }
 
-console.log(modules)
-
 const currentModuleIndex = Math.random() * modules.length | 0
+modules[currentModuleIndex].nb ++
 
 document.querySelector('h1').innerText = modules[currentModuleIndex].name
 
 const timeline = document.createElement('div')
 timeline.id = 'timeline'
+timeline.style.marginBottom = '20px'
+
 const parentEl = d3.select('.container').node()
 parentEl.insertBefore(timeline, parentEl.childNodes[0])
 
 const svg = d3.select(timeline)
     .append('svg')
 svg.attr('width', '100%')
-svg.attr('height', '110')
+svg.attr('height', '80')
 
 const svgWidth = document.querySelector('#timeline>svg').getBoundingClientRect().width
 
@@ -77,7 +79,7 @@ const groups = svg.selectAll('g')
     .data(modules)
     .enter()
     .append('g')
-    .attr('transform', (d, i) => `translate(${i <= currentModuleIndex ? i * moduleWidth : (i - 1) * moduleWidth + currentWidth} 5)`)
+    .attr('transform', (d, i) => `translate(${i <= currentModuleIndex ? i * moduleWidth : (i - 1) * moduleWidth + currentWidth} 15)`)
     
 groups.each(function(d, i) {
     d3.select(this)
@@ -86,7 +88,7 @@ groups.each(function(d, i) {
         .attr('y', 0)
         .attr('width', () => i === currentModuleIndex ? currentWidth : moduleWidth)
         .attr('height', 30)
-        .attr('fill', () => i < currentModuleIndex ? '#8F8F8F' : i === currentModuleIndex ? '#E0031A' : '#F4F4F4')
+        .attr('fill', () => i < currentModuleIndex ? '#AFAFAF' : i === currentModuleIndex ? '#FF5656' : '#EEECEC')
         .attr('stroke', 'white')
         .attr('stroke-width', '3px')
 
@@ -112,15 +114,13 @@ groups.each(function(d, i) {
         .attr('width', () => ('' + d.nb).length * 8 + 20)
         .attr('height', 20)
         .attr('height', 20)
-        .attr('fill', '#8F8F8F')
-        .attr('stroke', '#8F8F8F')
+        .attr('stroke', () => i === currentModuleIndex ? '#FF5656' : Math.abs(i - mean) < 2 ? '#1973E7' : '#AFAFAF')
         .attr('stroke-width', 5)
         .attr('stroke-linejoin', 'round')
     
     pop.append('path')
         .attr('d', 'M-10 8 L0 0 L10 8')
-        .attr('fill', '#8F8F8F')
-        .attr('stroke', '#8F8F8F')
+        .attr('stroke', () => i === currentModuleIndex ? '#FF5656' : Math.abs(i - mean) < 2 ? '#1973E7' : '#AFAFAF')
         .attr('stroke-width', 3)
         .attr('stroke-linejoin', 'round')
 
@@ -146,30 +146,55 @@ groups.each(function(d, i) {
         .attr('transform', `translate(${('' + d.nb).length === 1 ? -1 : ('' + d.nb).length === 2 ? 1 : 5}, 9)`);
 
     g.append('text')
-        .text(d => i === currentModuleIndex ? d.nb + 1 : d.nb)
+        .text(d => d.nb)
         .attr('font-size', 12)
         .attr('text-anchor', 'end')
         .attr('x', -2)
         .attr('y', 10)
+        .attr('fill', () => i === currentModuleIndex ? '#FF5656' : Math.abs(i - mean) < 2 ? '#1973E7' : '#AFAFAF')
 
     g.append('circle')
         .attr('cx', 8)
-        .attr('cy', 1)
+        .attr('cy', 3)
         .attr('r', 2.5)
-        .attr('fill', 'white')
-        .attr('stroke', 'black')
+        // .attr('fill', 'white')
+        .attr('fill', () => i === currentModuleIndex ? '#FF5656' : Math.abs(i - mean) < 2 ? '#1973E7' : '#AFAFAF')
 
     g.append('circle')
         .attr('cx', 8)
-        .attr('cy', 9)
+        .attr('cy', 11)
         .attr('r', 4)
-        .attr('fill', 'white')
-        .attr('stroke', 'black')
+        // .attr('fill', 'white')
+        .attr('fill', () => i === currentModuleIndex ? '#FF5656' : Math.abs(i - mean) < 2 ? '#1973E7' : '#AFAFAF')
 
     g.append('rect')
         .attr('x', 3)
-        .attr('y', 10)
+        .attr('y', 12)
         .attr('width', 10)
-        .attr('height', 6)
+        .attr('height', 5)
         .attr('fill', 'white')    
 })
+
+const p = document.createElement('p')
+p.style.marginTop = '2px'
+p.style.marginBottom = 0
+p.style.fontSize = '12px'
+p.innerHTML = `${modules[currentModuleIndex].nb} participants are reading this module:`
+timeline.appendChild(p)
+
+fetch(`https://randomuser.me/api/?results=${modules[currentModuleIndex].nb}`)
+    .then(resp => resp.json())
+    .then(json => {
+        console.log(json.results[0])
+        json.results.forEach(user => {
+            const img = document.createElement('img')
+            img.src = user.picture.thumbnail
+            img.style.height = '18px'
+            img.style.marginRight = '3px'
+            img.style.boxShadow = 'none'
+            img.style.webkitBoxShadow = 'none'
+            img.style.borderRadius = '2px'
+            img.style.border = 'solid #444 1px'
+            timeline.appendChild(img)
+        })
+    })
