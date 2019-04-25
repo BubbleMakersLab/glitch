@@ -67,20 +67,74 @@ parentEl.insertBefore(timeline, parentEl.childNodes[0])
 const svg = d3.select(timeline)
     .append('svg')
 svg.attr('width', '100%')
-svg.attr('height', '80')
+svg.attr('height', '70')
 
 const svgWidth = document.querySelector('#timeline>svg').getBoundingClientRect().width
 
 const currentWidth = 200
 const moduleWidth = (svgWidth - currentWidth) / (modules.length - 1)
 
-// console.log( {svgWidth, moduleWidth, total: moduleWidth * modules.length - 1 + currentWidth})
+let teacher = svg.append('g')
+    .attr('transform', 'translate(10, 5)')
 
-const groups = svg.selectAll('g')
+teacher.append('rect')
+    .attr('x', '0')
+    .attr('y', '-5')
+    .attr('width', '15')
+    .attr('height', '10')
+    .attr('stroke', '#43B8AF')
+    .attr('fill', 'white')
+
+teacher.append('circle')
+    .attr('cx', 0)
+    .attr('cy', 11)
+    .attr('r', 4)
+    .attr('stroke', 'white')
+
+teacher.append('circle')
+    .attr('cx', 0)
+    .attr('cy', 3)
+    .attr('r', 3)
+    .attr('stroke', 'white')
+
+teacher.append('circle')
+    .attr('cx', 0)
+    .attr('cy', 3)
+    .attr('r', 2.5)
+    .attr('fill', '#43B8AF')
+
+teacher.append('circle')
+    .attr('cx', 0)
+    .attr('cy', 11)
+    .attr('r', 4)
+    .attr('fill', '#43B8AF')
+
+teacher.append('path')
+    .attr('fill', '#43B8AF')
+    .attr('stroke', 'white')    
+    .attr('d', 'M 0 -3 L 5 -1 L 0 1 L -5 -1 L 0 -3')
+
+teacher.append('rect')
+    .attr('x', -5)
+    .attr('y', 12)
+    .attr('width', 10)
+    .attr('height', 5)
+    .attr('fill', 'white')
+
+console.log({mean, currentModuleIndex})
+teacher.transition()
+    .duration(3000)
+    .delay(500)
+    .attr('transform', `translate(${mean < currentModuleIndex ? mean * moduleWidth + moduleWidth / 2 - 5 : 
+        mean === currentModuleIndex ? (mean-1) * moduleWidth + currentWidth * .5 - 5 :
+        (mean-1) * moduleWidth + currentWidth + moduleWidth / 2 - 5 }, 5)`)
+
+const groups = svg.selectAll('g.module')
     .data(modules)
     .enter()
     .append('g')
-    .attr('transform', (d, i) => `translate(${i <= currentModuleIndex ? i * moduleWidth : (i - 1) * moduleWidth + currentWidth} 15)`)
+    .attr('class', 'module')
+    .attr('transform', (d, i) => `translate(${i <= currentModuleIndex ? i * moduleWidth : (i - 1) * moduleWidth + currentWidth} 20)`)
 
 groups.each(function(d, i) {
     d3.select(this)
@@ -109,16 +163,6 @@ groups.each(function(d, i) {
         .append('g')
         .attr('transform', () => `translate(${i === currentModuleIndex ? currentWidth / 2 : moduleWidth / 2} ${i === currentModuleIndex ? 27 : 17})`)
 
-    pop.append('rect')
-        .attr('x', -(('' + d.nb).length * 8 + 20)/2)
-        .attr('y', 5)
-        .attr('width', () => ('' + d.nb).length * 8 + 20)
-        .attr('height', 20)
-        .attr('height', 20)
-        .attr('stroke', () => i === currentModuleIndex ? '#2F61A8' : '#AFAFAF')
-        .attr('stroke-width', 5)
-        .attr('stroke-linejoin', 'round')
-
     pop.append('path')
         .attr('d', 'M-10 8 L0 0 L10 8')
         .attr('stroke', () => i === currentModuleIndex ? '#2F61A8' : '#AFAFAF')
@@ -127,14 +171,10 @@ groups.each(function(d, i) {
 
     pop.append('rect')
         .attr('x', -(('' + d.nb).length * 8 + 20)/2)
-        .attr('y', 5)
+        .attr('y', 2)
         .attr('width', ('' + d.nb).length * 8 + 20)
-        .attr('height', 20)
-        .attr('height', 20)
+        .attr('height', 15)
         .attr('fill', 'white')
-        .attr('stroke', 'white')
-        .attr('stroke-width', 6)
-        .attr('stroke-linejoin', 'round')
 
     pop.append('path')
         .attr('d', 'M-10 8 L0 0 L10 8')
@@ -174,34 +214,47 @@ groups.each(function(d, i) {
         .attr('fill', 'white')
 })
 
+// participants view
 const p = document.createElement('p')
 p.style.marginTop = '2px'
 p.style.marginBottom = 0
 p.style.fontSize = '12px'
-p.innerHTML = `${modules[currentModuleIndex].nb} participants are reading this module:`
+p.innerHTML = `<span style="color:#2F61A8">${modules[currentModuleIndex].nb} participants</span> are reading this module:`
+
 timeline.appendChild(p)
 
-fetch(`https://randomuser.me/api/?results=${modules[currentModuleIndex].nb}`)
+fetch(`https://randomuser.me/api/?results=${modules[currentModuleIndex].nb}&nat=fr`)
     .then(resp => resp.json())
     .then(json => {
         console.log(json.results[0])
 
-        let html = json.results.reduce((html, user) => {
+        const campuses = [
+            'Lyon',
+            'Paris',
+            'Saint&#8209;Étienne',
+            'Casablanca',
+            'Shangaï',
+        ]
+        const div = document.createElement('div')
+        div.classList.add('users')
+        div.innerHTML = json.results.reduce((html, user) => {
             return html + `<div class="user-wrap">
                 <img src="${user.picture.thumbnail}" alt="${user.name.first} ${user.name.last} profile picture">
-                <div class="user-card">
+                <div class="user-card" style="width: 250px">
                     <div class="row">
                         <div>
                             <img src="${user.picture.thumbnail}" alt="${user.name.first} ${user.name.last} profile picture">
                         </div>
                         <div>
                             <p><strong>${user.name.first} ${user.name.last}</strong></p>
-                            <p><a href="mailto:${user.email}">${user.email}</a></p>
-                            <p><svg viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 0C2.69 0 0 2.5 0 5.5 0 10.02 6 16 6 16s6-5.98 6-10.5C12 2.5 9.31 0 6 0zm0 14.55C4.14 12.52 1 8.44 1 5.5 1 3.02 3.25 1 6 1c1.34 0 2.61.48 3.56 1.36.92.86 1.44 1.97 1.44 3.14 0 2.94-3.14 7.02-5 9.05zM8 5.5c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg> ${user.location.city}</p>
+                            <p><a href="https://bubble-af31447.slack.com"><img src="https://a.slack-edge.com/4f28/img/services/api_200.png" style="height:16px; width:16px; margin:-2px 0 ">&nbsp;<strong>@${user.name.first}.${user.name.last}</strong></a></p>
+                            <!--<p><a href="mailto:${user.name.first}.${user.name.last}@edu.emlyon.com">${user.name.first}.${user.name.last}@edu.emlyon.com</a></p>-->
+                            <p><svg viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 0C2.69 0 0 2.5 0 5.5 0 10.02 6 16 6 16s6-5.98 6-10.5C12 2.5 9.31 0 6 0zm0 14.55C4.14 12.52 1 8.44 1 5.5 1 3.02 3.25 1 6 1c1.34 0 2.61.48 3.56 1.36.92.86 1.44 1.97 1.44 3.14 0 2.94-3.14 7.02-5 9.05zM8 5.5c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg>&nbsp;campus&nbsp;${campuses[Math.random() * campuses.length | 0]}</p>
                         </div>
                     </div>
                 </div>
             </div>`
-        }, '');
-        $(timeline).append(`<div class="users">${html}</div>`);
+        }, '')
+
+        timeline.appendChild(div)
     })
