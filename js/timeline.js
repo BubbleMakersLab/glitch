@@ -144,32 +144,30 @@ groups.each(function(d, i) {
         .attr('stroke-linejoin', 'round')
 
     let g = pop.append('g')
-        .attr('transform', `translate(${('' + d.nb).length === 1 ? -1 : ('' + d.nb).length === 2 ? 1 : 5}, 9)`);
+        .attr('transform', `translate(${('' + d.nb).length === 1 ? -1 : ('' + d.nb).length === 2 ? 1 : 5}, 7)`);
         
     g.append('text')
         .text(d => d.nb)
         .attr('font-size', 12)
         .attr('text-anchor', 'end')
-        .attr('x', -2)
+        .attr('x', -1)
         .attr('y', 10)
         .attr('fill', () => i === currentModuleIndex ? '#2F61A8' : '#AFAFAF')
 
     g.append('circle')
-        .attr('cx', 8)
+        .attr('cx', 6)
         .attr('cy', 3)
         .attr('r', 2.5)
-        // .attr('fill', 'white')
         .attr('fill', () => i === currentModuleIndex ? '#2F61A8' : '#AFAFAF')
 
     g.append('circle')
-        .attr('cx', 8)
+        .attr('cx', 6)
         .attr('cy', 11)
         .attr('r', 4)
-        // .attr('fill', 'white')
         .attr('fill', () => i === currentModuleIndex ? '#2F61A8' : '#AFAFAF')
 
     g.append('rect')
-        .attr('x', 3)
+        .attr('x', 1)
         .attr('y', 12)
         .attr('width', 10)
         .attr('height', 5)
