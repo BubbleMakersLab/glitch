@@ -99,13 +99,8 @@ groups.each(function(d, i) {
             .text(d.name)
             .attr('fill', 'white')
             .attr('font-size', 12)
-<<<<<<< HEAD
-            .attr('y', 19)
-
-=======
             .attr('y', 14)
-        
->>>>>>> ff96a142c60ac10c96eb5a916ce8d79b233f2a77
+
             const txtWidth = txt.node().getBBox().width
             txt.attr('x', (currentWidth - txtWidth) / 2)
     }
@@ -150,7 +145,7 @@ groups.each(function(d, i) {
 
     let g = pop.append('g')
         .attr('transform', `translate(${('' + d.nb).length === 1 ? -1 : ('' + d.nb).length === 2 ? 1 : 5}, 9)`);
-        
+
     g.append('text')
         .text(d => d.nb)
         .attr('font-size', 12)
