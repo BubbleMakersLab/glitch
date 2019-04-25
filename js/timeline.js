@@ -127,7 +127,6 @@ teacher.append('text')
     .attr('x', 18)
     .attr('y', 3)
 
-console.log({mean, currentModuleIndex})
 teacher.transition()
     .duration(3000)
     .delay(500)
