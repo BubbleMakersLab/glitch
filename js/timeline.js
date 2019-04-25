@@ -1,3 +1,4 @@
+//#FF5656
 // returns a gaussian random function with the given mean and stdev.
 function gaussian(mean, stdev) {
     let y2;
@@ -85,12 +86,12 @@ groups.each(function(d, i) {
     d3.select(this)
         .append('rect')
         .attr('x', 0)
-        .attr('y', 0)
+        .attr('y', () => i === currentModuleIndex ? -3 : 6)
         .attr('width', () => i === currentModuleIndex ? currentWidth : moduleWidth)
-        .attr('height', 30)
-        .attr('fill', () => i < currentModuleIndex ? '#AFAFAF' : i === currentModuleIndex ? '#FF5656' : '#EEECEC')
+        .attr('height', () => i === currentModuleIndex ? 26 : 8)
+        .attr('fill', () => i <= currentModuleIndex ? '#2F61A8' : '#EEECEC')
         .attr('stroke', 'white')
-        .attr('stroke-width', '3px')
+        .attr('stroke-width', '1px')
 
     if(i === currentModuleIndex) {
         const txt = d3.select(this)
@@ -98,15 +99,20 @@ groups.each(function(d, i) {
             .text(d.name)
             .attr('fill', 'white')
             .attr('font-size', 12)
+<<<<<<< HEAD
             .attr('y', 19)
 
+=======
+            .attr('y', 14)
+        
+>>>>>>> ff96a142c60ac10c96eb5a916ce8d79b233f2a77
             const txtWidth = txt.node().getBBox().width
             txt.attr('x', (currentWidth - txtWidth) / 2)
     }
 
     const pop = d3.select(this)
         .append('g')
-        .attr('transform', () => `translate(${i === currentModuleIndex ? currentWidth / 2 : moduleWidth / 2} 35)`)
+        .attr('transform', () => `translate(${i === currentModuleIndex ? currentWidth / 2 : moduleWidth / 2} ${i === currentModuleIndex ? 27 : 17})`)
 
     pop.append('rect')
         .attr('x', -(('' + d.nb).length * 8 + 20)/2)
@@ -114,13 +120,13 @@ groups.each(function(d, i) {
         .attr('width', () => ('' + d.nb).length * 8 + 20)
         .attr('height', 20)
         .attr('height', 20)
-        .attr('stroke', () => i === currentModuleIndex ? '#FF5656' : Math.abs(i - mean) < 2 ? '#1973E7' : '#AFAFAF')
+        .attr('stroke', () => i === currentModuleIndex ? '#2F61A8' : '#AFAFAF')
         .attr('stroke-width', 5)
         .attr('stroke-linejoin', 'round')
 
     pop.append('path')
         .attr('d', 'M-10 8 L0 0 L10 8')
-        .attr('stroke', () => i === currentModuleIndex ? '#FF5656' : Math.abs(i - mean) < 2 ? '#1973E7' : '#AFAFAF')
+        .attr('stroke', () => i === currentModuleIndex ? '#2F61A8' : '#AFAFAF')
         .attr('stroke-width', 3)
         .attr('stroke-linejoin', 'round')
 
@@ -132,7 +138,7 @@ groups.each(function(d, i) {
         .attr('height', 20)
         .attr('fill', 'white')
         .attr('stroke', 'white')
-        .attr('stroke-width', 3)
+        .attr('stroke-width', 6)
         .attr('stroke-linejoin', 'round')
 
     pop.append('path')
@@ -144,28 +150,28 @@ groups.each(function(d, i) {
 
     let g = pop.append('g')
         .attr('transform', `translate(${('' + d.nb).length === 1 ? -1 : ('' + d.nb).length === 2 ? 1 : 5}, 9)`);
-
+        
     g.append('text')
         .text(d => d.nb)
         .attr('font-size', 12)
         .attr('text-anchor', 'end')
         .attr('x', -2)
         .attr('y', 10)
-        .attr('fill', () => i === currentModuleIndex ? '#FF5656' : Math.abs(i - mean) < 2 ? '#1973E7' : '#AFAFAF')
+        .attr('fill', () => i === currentModuleIndex ? '#2F61A8' : '#AFAFAF')
 
     g.append('circle')
         .attr('cx', 8)
         .attr('cy', 3)
         .attr('r', 2.5)
         // .attr('fill', 'white')
-        .attr('fill', () => i === currentModuleIndex ? '#FF5656' : Math.abs(i - mean) < 2 ? '#1973E7' : '#AFAFAF')
+        .attr('fill', () => i === currentModuleIndex ? '#2F61A8' : '#AFAFAF')
 
     g.append('circle')
         .attr('cx', 8)
         .attr('cy', 11)
         .attr('r', 4)
         // .attr('fill', 'white')
-        .attr('fill', () => i === currentModuleIndex ? '#FF5656' : Math.abs(i - mean) < 2 ? '#1973E7' : '#AFAFAF')
+        .attr('fill', () => i === currentModuleIndex ? '#2F61A8' : '#AFAFAF')
 
     g.append('rect')
         .attr('x', 3)
