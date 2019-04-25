@@ -14,7 +14,7 @@ function gaussian(mean, stdev) {
             do {
                  x1 = 2.0 * Math.random() - 1.0;
                  x2 = 2.0 * Math.random() - 1.0;
-                 w  = x1 * x1 + x2 * x2;               
+                 w  = x1 * x1 + x2 * x2;
             } while( w >= 1.0);
             w = Math.sqrt((-2.0 * Math.log(w))/w);
             y1 = x1 * w;
@@ -24,7 +24,7 @@ function gaussian(mean, stdev) {
 
        let retval = mean + stdev * y1;
        if(retval > 0) return retval;
-       
+
        return -retval;
    }
 }
@@ -81,7 +81,7 @@ const groups = svg.selectAll('g')
     .enter()
     .append('g')
     .attr('transform', (d, i) => `translate(${i <= currentModuleIndex ? i * moduleWidth : (i - 1) * moduleWidth + currentWidth} 15)`)
-    
+
 groups.each(function(d, i) {
     d3.select(this)
         .append('rect')
@@ -100,11 +100,11 @@ groups.each(function(d, i) {
             .attr('fill', 'white')
             .attr('font-size', 12)
             .attr('y', 14)
-        
+
             const txtWidth = txt.node().getBBox().width
             txt.attr('x', (currentWidth - txtWidth) / 2)
     }
-    
+
     const pop = d3.select(this)
         .append('g')
         .attr('transform', () => `translate(${i === currentModuleIndex ? currentWidth / 2 : moduleWidth / 2} ${i === currentModuleIndex ? 27 : 17})`)
@@ -118,7 +118,7 @@ groups.each(function(d, i) {
         .attr('stroke', () => i === currentModuleIndex ? '#2F61A8' : '#AFAFAF')
         .attr('stroke-width', 5)
         .attr('stroke-linejoin', 'round')
-    
+
     pop.append('path')
         .attr('d', 'M-10 8 L0 0 L10 8')
         .attr('stroke', () => i === currentModuleIndex ? '#2F61A8' : '#AFAFAF')
@@ -135,7 +135,7 @@ groups.each(function(d, i) {
         .attr('stroke', 'white')
         .attr('stroke-width', 6)
         .attr('stroke-linejoin', 'round')
-    
+
     pop.append('path')
         .attr('d', 'M-10 8 L0 0 L10 8')
         .attr('fill', 'white')
@@ -171,7 +171,7 @@ groups.each(function(d, i) {
         .attr('y', 12)
         .attr('width', 10)
         .attr('height', 5)
-        .attr('fill', 'white')    
+        .attr('fill', 'white')
 })
 
 const p = document.createElement('p')
@@ -185,15 +185,23 @@ fetch(`https://randomuser.me/api/?results=${modules[currentModuleIndex].nb}`)
     .then(resp => resp.json())
     .then(json => {
         console.log(json.results[0])
-        json.results.forEach(user => {
-            const img = document.createElement('img')
-            img.src = user.picture.thumbnail
-            img.style.height = '18px'
-            img.style.marginRight = '3px'
-            img.style.boxShadow = 'none'
-            img.style.webkitBoxShadow = 'none'
-            img.style.borderRadius = '2px'
-            img.style.border = 'solid #444 1px'
-            timeline.appendChild(img)
-        })
+
+        let html = json.results.reduce((html, user) => {
+            return html + `<div class="user-wrap">
+                <img src="${user.picture.thumbnail}" alt="${user.name.first} ${user.name.last} profile picture">
+                <div class="user-card">
+                    <div class="row">
+                        <div>
+                            <img src="${user.picture.thumbnail}" alt="${user.name.first} ${user.name.last} profile picture">
+                        </div>
+                        <div>
+                            <p><strong>${user.name.first} ${user.name.last}</strong></p>
+                            <p><a href="mailto:${user.email}">${user.email}</a></p>
+                            <p><svg viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6 0C2.69 0 0 2.5 0 5.5 0 10.02 6 16 6 16s6-5.98 6-10.5C12 2.5 9.31 0 6 0zm0 14.55C4.14 12.52 1 8.44 1 5.5 1 3.02 3.25 1 6 1c1.34 0 2.61.48 3.56 1.36.92.86 1.44 1.97 1.44 3.14 0 2.94-3.14 7.02-5 9.05zM8 5.5c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"></path></svg> ${user.location.city}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+        }, '');
+        $(timeline).append(`<div class="users">${html}</div>`);
     })
