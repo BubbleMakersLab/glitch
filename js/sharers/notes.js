@@ -130,7 +130,7 @@ var ShareThisViaNotes  = (function() {
     }
     function selectWrapper(wrapper) {
         toArray(document.querySelectorAll(".note-wrapper.is-selected")).forEach(function(wrp) {
-            wrp.classList.remove("is-selected");
+            // wrp.classList.remove("is-selected");
         });
         if (wrapper) wrapper.classList.add("is-selected");
     }
@@ -146,7 +146,7 @@ var ShareThisViaNotes  = (function() {
     function cancelEdit(wrapper) {
         const comment = getCommentField(wrapper);
         comment.contentEditable = false;
-        wrapper.classList.remove("is-selected");
+        // wrapper.classList.remove("is-selected");
         var note = wrapper.note;
         if (notes.indexOf(note) === -1) {
             document.body.removeChild(wrapper);
@@ -160,7 +160,7 @@ var ShareThisViaNotes  = (function() {
         if (!content) return removeNote(wrapper)
 
         comment.contentEditable = false;
-        wrapper.classList.remove("is-selected");
+        // wrapper.classList.remove("is-selected");
         var note = wrapper.note;
         if (notes.indexOf(note) === -1) {
             notes.push(note);

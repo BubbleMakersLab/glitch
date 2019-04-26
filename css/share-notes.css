@@ -7,13 +7,13 @@
 }
 .note-reference > span {
     position: absolute;
-    background: rgba(196, 196, 255, 0.35);
+    background: rgba(255,255,0,0.5);
 }
 .note-box {
     position: absolute;
-    left: calc(51% + 350px);
+    right: 5px;
     width: calc(49% - 350px);
-    max-width: 10em;
+    max-width: 15em;
     padding: 1em;
     background: ivory;
     border: 1px solid wheat;
@@ -47,4 +47,8 @@
 .note-wrapper.is-selected > .note-reference,
 .note-wrapper:hover > .note-reference {
     display: block;
+}
+
+::selection {
+    background-color: yellow;
 }
