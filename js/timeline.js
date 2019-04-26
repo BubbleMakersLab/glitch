@@ -62,7 +62,7 @@ document.querySelector('h1').innerText = modules[currentModuleIndex].name
 
 const timeline = document.createElement('div')
 timeline.id = 'timeline'
-timeline.style.marginBottom = '10px'
+timeline.style.marginBottom = '0px'
 timeline.style.width = '90%'
 timeline.style.marginLeft = '5%'
 
@@ -72,7 +72,7 @@ parentEl.appendChild(timeline)
 const svg = d3.select(timeline)
     .append('svg')
 svg.attr('width', '100%')
-svg.attr('height', '70')
+svg.attr('height', '65')
 
 const svgWidth = document.querySelector('#timeline>svg').getBoundingClientRect().width
 
