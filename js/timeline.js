@@ -161,6 +161,9 @@ groups.each(function(d, i) {
         .attr('fill', () => i <= currentModuleIndex ? '#2F61A8' : '#EEECEC')
         .attr('stroke', 'white')
         .attr('stroke-width', '1px')
+        .attr('style', 'cursor: pointer')
+        .on('click', () => location = location)
+
 
     if(i === currentModuleIndex) {
         const txt = d3.select(this)
@@ -190,6 +193,7 @@ groups.each(function(d, i) {
         .attr('width', ('' + d.nb).length * 8 + 20)
         .attr('height', 15)
         .attr('fill', 'white')
+    
 
     pop.append('path')
         .attr('d', 'M-10 8 L0 0 L10 8')
