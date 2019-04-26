@@ -1,0 +1,50 @@
+.share-this-popover {
+    font-size: 20px;
+}
+
+.note-reference {
+    display: none;
+}
+.note-reference > span {
+    position: absolute;
+    background: rgba(196, 196, 255, 0.35);
+}
+.note-box {
+    position: absolute;
+    left: calc(51% + 350px);
+    width: calc(49% - 350px);
+    max-width: 10em;
+    padding: 1em;
+    background: ivory;
+    border: 1px solid wheat;
+    border-radius: .2em;
+    box-shadow: 0 .1em .2em rgba(0, 0, 0, .35);
+    box-sizing: border-box;
+}
+.note-toolbar {
+    margin: -.5em -1em -1em;
+    text-align: right;
+    opacity: 0;
+    line-height: 1;
+}
+.note-toolbar > button {
+    background: transparent;
+    color: gray;
+    border: none;
+    box-shadow: none;
+    padding: .25em;
+    line-height: 1;
+    font-size: 100%;
+    cursor: pointer;
+}
+.note-toolbar > button:hover {
+    background: rgba(0, 0, 0, .05);
+}
+.note-wrapper.is-selected .note-toolbar,
+.note-wrapper:hover .note-toolbar {
+    opacity: 1;
+}
+.note-wrapper.is-selected > .note-reference,
+.note-wrapper:hover > .note-reference {
+    display: block;
+}

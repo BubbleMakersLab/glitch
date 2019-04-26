@@ -33,12 +33,18 @@
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@10.19.0/dist/lazyload.min.js"></script>
     <script src="js/main.js"></script>
 
-    <!--Glitch requirements-->
-    <script src="https://unpkg.com/share-this@1.2.2/dist/share-this.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/share-this@1.2.2/dist/share-this.css">
+    <link rel="stylesheet" href="js/share-this.css">
+    <link rel="stylesheet" href="css/share-notes.css">
 </head>
 
 <body>
+    <img id="bs" src="bs.png" style='z-index:999;width:100%; position:fixed;margin-top:0'>
+    <div id="empty"></div>
+    <script>
+        addEventListener('load', e => document.querySelector('#empty').style.height = `${document.querySelector('#bs').clientHeight}px`)
+    </script>
+
+
     <div class="header">
         <div class="info">
             <h1>Introduction</h1>
@@ -47,7 +53,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <article class="container">
         <h6>Why this course?</h6>
 
         <div id="why">
@@ -210,11 +216,16 @@
         </div>
 
         <hr>
-    </div>
+    </article>
 
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="js/timeline.js"></script>
-    <script src="js/glitch-js.min.js"></script>
+    <!-- <script src="js/glitch-js.min.js"></script> -->
+    <script src="js/share-this.js"></script>
+    <script src="js/sharers/twitter.js"></script>
+    <script src="js/sharers/reddit.js"></script>
+    <script src="js/sharers/notes.js"></script>
+    <script src="js/share.js"></script>
 </body>
 
 </html>
