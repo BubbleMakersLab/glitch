@@ -116,7 +116,7 @@ teacher.append('circle')
 
 teacher.append('path')
     .attr('fill', () => currentModuleIndex < mean ? '#E1021A' : '#4A4A49')
-    .attr('stroke', 'white')    
+    .attr('stroke', 'white')
     .attr('d', 'M 0 -3 L 5 -1 L 0 1 L -5 -1 L 0 -3')
 
 teacher.append('rect')
@@ -140,7 +140,7 @@ if(currentModuleIndex < mean){
 teacher.transition()
     .duration(3000)
     .delay(500)
-    .attr('transform', `translate(${mean < currentModuleIndex ? mean * moduleWidth + moduleWidth / 2 - 5 : 
+    .attr('transform', `translate(${mean < currentModuleIndex ? mean * moduleWidth + moduleWidth / 2 - 5 :
         mean === currentModuleIndex ? (mean-1) * moduleWidth + currentWidth * .5 - 5 :
         (mean-1) * moduleWidth + currentWidth + moduleWidth / 2 - 5 }, 5)`)
 
@@ -193,7 +193,7 @@ groups.each(function(d, i) {
         .attr('width', ('' + d.nb).length * 8 + 20)
         .attr('height', 15)
         .attr('fill', 'white')
-    
+
 
     pop.append('path')
         .attr('d', 'M-10 8 L0 0 L10 8')
@@ -204,7 +204,7 @@ groups.each(function(d, i) {
 
     let g = pop.append('g')
         .attr('transform', `translate(${('' + d.nb).length === 1 ? -1 : ('' + d.nb).length === 2 ? 1 : 5}, 7)`);
-        
+
     g.append('text')
         .text(d => d.nb)
         .attr('font-size', 12)
@@ -237,8 +237,6 @@ groups.each(function(d, i) {
 fetch(`https://randomuser.me/api/?results=${modules[currentModuleIndex].nb}&nat=fr`)
     .then(resp => resp.json())
     .then(json => {
-        console.log(json.results[0])
-
         const campuses = [
             'Lyon',
             'Paris',
@@ -248,7 +246,7 @@ fetch(`https://randomuser.me/api/?results=${modules[currentModuleIndex].nb}&nat=
         ]
         const div = document.createElement('div')
         div.classList.add('users')
-        
+
         div.innerHTML = `<p style="margin-top:2px; margin-bottom:0; font-size: 12px;"><span style="color:#2F61A8">${modules[currentModuleIndex].nb} participants</span> are reading this module:</p><br>` + json.results.reduce((html, user) => {
             return html + `<div class="user-wrap">
                 <img src="${user.picture.thumbnail}" alt="${user.name.first} ${user.name.last} profile picture">
@@ -271,11 +269,9 @@ fetch(`https://randomuser.me/api/?results=${modules[currentModuleIndex].nb}&nat=
         document.querySelector('#participants').appendChild(div)
 
         function resizeEmpty(){
-            console.log('test')
             document.querySelector('#empty').style.height = `${document.querySelector('#bs').clientHeight}px`
         }
         document.querySelectorAll('.user-picture').forEach(img =>{
-            console.log(img);
             img.addEventListener('load', resizeEmpty)
         })
     })

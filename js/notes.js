@@ -210,11 +210,7 @@ var ShareThisViaNotes  = (function() {
         name: "notes",
         render: function(text, rawText) {
             this.rawText = rawText;
-            return "<a title=\"Write a note about it\" href=\"#\">"
-                + "<svg viewBox=\"-1 -1 9 9\">"
-                    + "<path fill=\"currentColor\" d=\"M0 1A1 1 0 0 1 1 0H6A1 1 0 0 1 7 1V4A1 1 0 0 1 6.707 4.707L4.41 7V5H1A1 1 0 0 1 0 4 "
-                        + "M3 2.5A.5.5 0 0 0 4 2.5M5 2.5A.5.5 0 0 0 6 2.5.5.5 0 0 0 5 2.5M4 2.5A.5.5 0 0 03 2.5M2 2.5A.5.5 0 0 0 1 2.5.5.5 0 0 0 2 2.5\"></path>"
-                + "</svg></a>";
+            return `<a title="Write a note about it" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 75"><defs><style>.cls-1{fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:4.82px;}.cls-2{fill:#fff;}</style></defs><path class="cls-1" d="M78.45,77.56,65.22,65.64H24a6.44,6.44,0,0,1-6.45-6.44V24.88A6.45,6.45,0,0,1,24,18.44H72a6.45,6.45,0,0,1,6.45,6.44Z" transform="translate(-15.14 -16.03)"/><polygon class="cls-2" points="36.31 12.28 29.41 12.28 29.41 22.56 19.13 22.56 19.13 29.46 29.41 29.46 29.41 39.74 36.31 39.74 36.31 29.46 46.59 29.46 46.59 22.56 36.31 22.56 36.31 12.28 36.31 12.28"/></svg></a>`;
         },
         active: function(text, rawText) {
             return isTextUnique(rawText);
