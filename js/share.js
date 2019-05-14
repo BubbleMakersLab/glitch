@@ -39,7 +39,7 @@ const askQuestion = {
             let name = 'sacha.mallet1@gmail.com'
             fetch(`https://futuristic-anaconda.glitch.me/slack?email=${name}&select=${txt}&question=${postMessage}`)
 
-            swal("Your message have been post in the #help channel in Slack!", {
+            swal("Your message has been post in the #help channel in Slack!", {
               icon: "success",
             });
           } else {
