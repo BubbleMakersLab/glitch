@@ -33,7 +33,21 @@ const askQuestion = {
              },
              closeOnClickOutside: false,
              closeOnEsc: false,
-        })
+        }).then((postMessage) => {
+          if (postMessage) {
+            console.log({txt, postMessage, name: 'sacha.mallet1@gmail.com'})
+            let name = 'sacha.mallet1@gmail.com'
+            fetch(`https://futuristic-anaconda.glitch.me/slack?email=${name}&select=${txt}&question=${postMessage}`)
+
+            swal("Your message have been post in the #help channel in Slack!", {
+              icon: "success",
+            });
+          } else {
+            swal("Your message was not post! ", {
+              icon: "error",
+            });
+          }
+      });
     }
 }
 
